@@ -9,6 +9,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
   const licenseConfirmed = document.getElementById("license-num-confirm");
   const donorStatus = document.getElementById("donor-status");
   const form = document.getElementById("drivers-license-form");
+  const button = document.getElementsByClassName("form__submit")[0];
+  let count = 0;
 
   const changeDonorStatus = (e) => {
     const donorStatus = document.getElementById("card-donor-status");
@@ -28,8 +30,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
     element.innerHTML = e.target.value;
   };
 
+  button.addEventListener("click", (e) => {
+    button.innerHTML = count;
+    count++;
+    e.preventDefault();
+  })
   form.addEventListener("input", (e) => {
-    console.log(e.target.id);
     switch (e.target.id) {
       case "title":
         updateDriversLicense(e, "card-title");
@@ -49,7 +55,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       case "license-num":
         updateDriversLicense(e, "card-license-num");
         setTimeout(() => {
-          const button = document.getElementsByClassName("form__submit")[0];
+          
           if (!isNumberMatch(licenseNumber, licenseConfirmed)) {
             licenseConfirmed.classList.add("no-match");
             licenseNumber.classList.add("no-match");
