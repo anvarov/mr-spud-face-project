@@ -19,6 +19,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
     }
   };
 
+  const isNumberMatch = (el1, el2) => {
+    return el1.value === el2.value
+  }
+
   const updateDriversLicense = (e, idName) => {
     const element = document.getElementById(idName);
     element.innerHTML = e.target.value;
@@ -44,6 +48,18 @@ window.addEventListener("DOMContentLoaded", (event) => {
         break;
       case "license-num":
         updateDriversLicense(e, "card-license-num");
+        setTimeout(() => {
+          const button = document.getElementsByClassName("form__submit")[0];
+          if (!isNumberMatch(licenseNumber, licenseConfirmed)) {
+            licenseConfirmed.classList.add("no-match");
+            licenseNumber.classList.add("no-match");
+            button.setAttribute("disabled", true)
+          } else {
+            licenseNumber.classList.remove("no-match");
+            licenseConfirmed.classList.remove("no-match");
+            button.removeAttribute("disabled");
+          }
+        }, 8000);
         break;
       case "donor-status":
         changeDonorStatus(e);

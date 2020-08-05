@@ -46,3 +46,7 @@ body {
 .focused {
   background-color: lightgreen;
 }
+
+.no-match {
+  background-color: lightcoral;
+}
