@@ -10,7 +10,33 @@ window.addEventListener("DOMContentLoaded", (event) => {
   const donorStatus = document.getElementById("donor-status");
   const form = document.getElementById("drivers-license-form");
   const button = document.getElementsByClassName("form__submit")[0];
+  const imageContainer = document.getElementsByClassName("image__container")[0];
+  const potatoTarget = document.getElementsByClassName("potato__target")[0];
   let count = 0;
+  
+  
+  const onDragStart = (e) => {
+    console.log(e, "im being dragged");
+    e.dataTransfer.setData("application/my-app", e.target.id);
+    e.dataTransfer.dropEffect = "move";
+  }
+  const handleDrop = (e) => {
+    e.preventDefault();
+    console.log("im being dropped")
+    const data = e.dataTransfer.getData("application/my-app");
+    console.log(data, "this is data")
+    console.log(e.target)
+    e.target.appendChild(document.getElementById(data));
+  }
+
+  const onDragOver = (e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+    console.log("on drag over");
+  }
+  imageContainer.addEventListener("dragstart", onDragStart);
+  potatoTarget.addEventListener("dragover", onDragOver);
+  potatoTarget.addEventListener("drop", handleDrop);
 
   const changeDonorStatus = (e) => {
     const donorStatus = document.getElementById("card-donor-status");
@@ -34,7 +60,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
     button.innerHTML = count;
     count++;
     e.preventDefault();
-  })
+  });
+
   form.addEventListener("input", (e) => {
     switch (e.target.id) {
       case "title":

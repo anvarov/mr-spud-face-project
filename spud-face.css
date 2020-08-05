@@ -4,12 +4,20 @@ body {
   justify-content: space-evenly;
 }
 
+#drivers-license-form {
+  display: flex;
+  justify-content: right;
+  flex-direction: column;
+}
+
 .form--license {
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .form__field {
   padding: 5px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .form__input {
@@ -30,6 +38,7 @@ body {
   border-width: 1px;
   border-style: solid;
   font-size: 14px;
+  align-self: flex-start;
 }
 
 .license {
@@ -49,4 +58,44 @@ body {
 
 .no-match {
   background-color: lightcoral;
+}
+
+.image__container > img {
+  cursor: move;
+  
+}
+.image__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  flex-wrap: wrap;
+}
+
+.potato__target {
+  background-image: url("./images/spud-body.png");
+  /* position: absolute; */
+  width: 448px;
+  height: 720px;
+}
+
+.drag-and-drop {
+  display: flex;
+  justify-content: space-evenly;
+  flex-grow: 1;
+  border: 1px solid lightslategray;
+  margin-top: 15px;
+  padding: 50px;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+#drag-heading {
+  position: relative;
+  top: -50px;
+  font-family: Arial, Helvetica, sans-serif;
 }
